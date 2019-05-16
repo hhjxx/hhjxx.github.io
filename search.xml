@@ -3,9 +3,12 @@
   <entry>
     <title><![CDATA[test]]></title>
     <url>%2F2019%2F05%2F16%2Ftest%2F</url>
-    <content type="text"><![CDATA[testing hexo github hjx 2019.5.16马方平sb]]></content>
+    <content type="text"><![CDATA[testing hexo github hjx 2019.5.16\n马方平sb]]></content>
+      <categories>
+        <category>测试2</category>
+      </categories>
       <tags>
-        <tag>categories</tag>
+        <tag>测试1</tag>
       </tags>
   </entry>
   <entry>
