@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[test]]></title>
-    <url>%2F2019%2F05%2F16%2Ftest%2F</url>
-    <content type="text"><![CDATA[testing hexo github hjx 2019.5.16]]></content>
+    <title><![CDATA[查找数组中的指定元素]]></title>
+    <url>%2F2019%2F05%2F16%2F%E6%9F%A5%E6%89%BE%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[在已经排好序的数组中查找指定的数字12345678910111213141516171819int findBin(int a[],int n ,int key)&#123; int low = 0; int high = n - 1; int mid ; while (low &lt;= high) &#123; mid = (low + high) / 2; if (key == a[mid]) &#123; return mid; &#125; if (key &lt; a[mid]) high = mid; if (key &gt; a[mid]) low = mid; &#125; return -1;&#125;]]></content>
       <categories>
-        <category>分类测试</category>
+        <category>C语言</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F05%2F16%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[HELLO WORLD]]></content>
+    <title><![CDATA[数组排序or对数组插入指定数据]]></title>
+    <url>%2F2019%2F05%2F16%2F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8For%E5%AF%B9%E6%95%B0%E7%BB%84%E6%8F%92%E5%85%A5%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%2F</url>
+    <content type="text"><![CDATA[单个数字按大小插入到已排好序的数组里和插入排序法的关系 单个数字按大小插入到已排好序的数组12345678910111213141516171819#include &lt;stdio.h&gt;void insertArray(int a[],int N,int num) //N是数组下标,num是要插入的数字&#123; int n = N + 1; int i; for (i = n - 1; i &gt;= 0; i--) &#123; if (num &lt; a[i]) &#123; a[i + 1] = a[i]; &#125; else &#123; a[i + 1] = num; a[i] = num; break; &#125; &#125;&#125; 插入排序法123456void sequnceArray(int a[],int n) //n是数组的下标&#123; int i; for (i = 1; i &lt; n; i++) insertArray(a, i, a[i]);&#125;]]></content>
+      <categories>
+        <category>C语言</category>
+      </categories>
   </entry>
 </search>
