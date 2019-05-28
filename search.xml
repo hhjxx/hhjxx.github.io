@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[计算字符串中的子串数量]]></title>
+    <url>%2F2019%2F05%2F28%2F%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%AD%90%E4%B8%B2%E6%95%B0%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[代码实现如下12345678910111213141516171819int countTarget(char *string,char *target,int *ncount)&#123; int count = 0; if (string == NULL || target == NULL) return -1; while (string != NULL) &#123; string = strstr(string, target); if (string != NULL) &#123; count++; string = string + strlen(target); &#125; else break; &#125; *ncount = count; return 0;&#125;]]></content>
+      <categories>
+        <category>C语言</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[LSB算法BMP图片信息隐藏技术(C语言)]]></title>
+    <url>%2F2019%2F05%2F25%2FLSB%E7%AE%97%E6%B3%95BMP%E5%9B%BE%E7%89%87%E4%BF%A1%E6%81%AF%E9%9A%90%E8%97%8F%E6%8A%80%E6%9C%AF%20C%E8%AF%AD%E8%A8%80%2F</url>
+    <content type="text"><![CDATA[LSB算法是将信息的每一位隐藏到BMP格式图片RGB单元的最后一位,由于一位的改变对于颜色影响不大，人的肉眼难以识别，从而达到信息隐藏的效果。具体需要了解BMP文件格式，前54个字节为图片信息，不能修改，所以从第55个字节开始进行隐藏。]]></content>
+      <categories>
+        <category>C语言</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[查找数组中的指定元素]]></title>
     <url>%2F2019%2F05%2F16%2F%E6%9F%A5%E6%89%BE%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%2F</url>
     <content type="text"><![CDATA[在已经排好序的数组中查找指定的数字12345678910111213141516171819int findBin(int a[],int n ,int key)&#123; int low = 0; int high = n - 1; int mid ; while (low &lt;= high) &#123; mid = (low + high) / 2; if (key == a[mid]) &#123; return mid; &#125; if (key &lt; a[mid]) high = mid; if (key &gt; a[mid]) low = mid; &#125; return -1;&#125;]]></content>
