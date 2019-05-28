@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[清除字符串中的空格]]></title>
+    <url>%2F2019%2F05%2F28%2F%E6%B8%85%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E7%A9%BA%E6%A0%BC%2F</url>
+    <content type="text"><![CDATA[指针作为形参,函数处理后直接改变该指针指向无空格的结果 代码实现如下:1234567891011121314151617181920212223int clearSpace(char *string)&#123; if (string == NULL) return -1; int i, j; int len; char *temp = string ; len = strlen(temp); for (i = 0; i &lt;= len; i++) &#123; if (temp[i] == ' ') &#123; for (j = i; j &lt;= len; j++) //空格后的数据往前移 temp[j] = temp[j + 1]; len--; i--; //移动数据后还要再次检测该位置是否空格(防止多个空格连着,移动后该位置仍然是空格) &#125; else continue; &#125; string = temp; return 0;&#125;]]></content>
+      <categories>
+        <category>C语言</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[计算字符串中的子串数量]]></title>
     <url>%2F2019%2F05%2F28%2F%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%AD%90%E4%B8%B2%E6%95%B0%E9%87%8F%2F</url>
     <content type="text"><![CDATA[代码实现如下12345678910111213141516171819int countTarget(char *string,char *target,int *ncount)&#123; int count = 0; if (string == NULL || target == NULL) return -1; while (string != NULL) &#123; string = strstr(string, target); if (string != NULL) &#123; count++; string = string + strlen(target); &#125; else break; &#125; *ncount = count; return 0;&#125;]]></content>
