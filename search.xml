@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[配置文件的读写]]></title>
+    <url>%2F2019%2F5a0fd103.html</url>
+    <content type="text"><![CDATA[向指定文件中输入key = value,并可以根据key来读取value 配置文件的写入:1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253int WriteCfg(const char *filename,char *key,const char *value) //配置文件写入&#123; long int FileLength = 0; char *tmp = NULL; char *LineBuf = (char*)malloc(2048); char *FileBuf; int CheckHaveKey = 0; FILE *fp = fopen(filename, "r+"); if (fp == NULL) &#123; fp = fopen(filename, "w+t"); &#125; fseek(fp, 0, SEEK_END); FileLength = ftell(fp); FileBuf = (char*)malloc(FileLength); memset(FileBuf, 0, FileLength); fseek(fp, 0, SEEK_SET); while (!feof(fp)) //查找文件中是否存在key,有的话直接改写value &#123; fgets(LineBuf, 1024, fp); tmp = strstr(LineBuf, key); // 查找该行是否已有key存在 if (tmp != NULL) //该行有目标key,更改该行 &#123; sprintf(LineBuf, "%s = %s\n", key, value); strcat(FileBuf, LineBuf); CheckHaveKey = 1; &#125; if (tmp == NULL) //该行没有目标key,不用改 &#123; strcat(FileBuf, LineBuf); &#125; &#125; if (CheckHaveKey == 1) //如果整个文件中已含有目标key,则更改后重新创建文件写入 &#123; fclose(fp); fp = fopen(filename, "w"); fputs(FileBuf, fp); &#125; if (CheckHaveKey == 0) //如果整个文件中都不含有目标key,则在文件后面追加key &#123; fprintf(fp, "%s = %s\n", key, value); &#125; if (LineBuf != NULL) &#123; free(LineBuf); LineBuf = NULL; &#125; fclose(fp); fp = NULL; return 0;&#125; 获取配置文件的值:123456789101112131415161718192021222324252627282930313233int GetCfg(const char *filename, const char *key,char **value) //根据key获取相应的value到value中&#123; char *buf = (char*)malloc(sizeof(char) * 100); memset(buf, 0, sizeof(char) * 100); FILE *fp = fopen(filename, "r"); if (fp == NULL) &#123; printf("配置文件不存在\n"); return -1; &#125; while (!feof(fp)) &#123; fgets(buf, sizeof(char) * 100, fp); if ((*value = strstr(buf, key)) == NULL) &#123; continue; &#125; if ((*value = strchr(buf, '=')) != NULL) &#123; break; &#125; &#125; if (*value == NULL) &#123; printf("key不存在\n"); return 1; &#125; *value += 1; clearSpace(*value); //清除字符串中的空格 该函数的实现:https://hhjxx.github.io/2019/a36dd748.html#more fclose(fp); fp = NULL; return 0;&#125;]]></content>
+      <categories>
+        <category>C语言</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[清除字符串中的空格]]></title>
-    <url>%2F2019%2F05%2F28%2F%E6%B8%85%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E7%A9%BA%E6%A0%BC%2F</url>
+    <url>%2F2019%2Fa36dd748.html</url>
     <content type="text"><![CDATA[指针作为形参,函数处理后直接改变该指针指向无空格的结果 代码实现如下:1234567891011121314151617181920212223int clearSpace(char *string)&#123; if (string == NULL) return -1; int i, j; int len; char *temp = string ; len = strlen(temp); for (i = 0; i &lt;= len; i++) &#123; if (temp[i] == ' ') &#123; for (j = i; j &lt;= len; j++) //空格后的数据往前移 temp[j] = temp[j + 1]; len--; i--; //移动数据后还要再次检测该位置是否空格(防止多个空格连着,移动后该位置仍然是空格) &#125; else continue; &#125; string = temp; return 0;&#125;]]></content>
       <categories>
         <category>C语言</category>
@@ -10,7 +18,7 @@
   </entry>
   <entry>
     <title><![CDATA[计算字符串中的子串数量]]></title>
-    <url>%2F2019%2F05%2F28%2F%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%AD%90%E4%B8%B2%E6%95%B0%E9%87%8F%2F</url>
+    <url>%2F2019%2F4b90b8af.html</url>
     <content type="text"><![CDATA[代码实现如下12345678910111213141516171819int countTarget(char *string,char *target,int *ncount)&#123; int count = 0; if (string == NULL || target == NULL) return -1; while (string != NULL) &#123; string = strstr(string, target); if (string != NULL) &#123; count++; string = string + strlen(target); &#125; else break; &#125; *ncount = count; return 0;&#125;]]></content>
       <categories>
         <category>C语言</category>
@@ -18,7 +26,7 @@
   </entry>
   <entry>
     <title><![CDATA[LSB算法BMP图片信息隐藏技术(C语言)]]></title>
-    <url>%2F2019%2F05%2F25%2FLSB%E7%AE%97%E6%B3%95BMP%E5%9B%BE%E7%89%87%E4%BF%A1%E6%81%AF%E9%9A%90%E8%97%8F%E6%8A%80%E6%9C%AF%20C%E8%AF%AD%E8%A8%80%2F</url>
+    <url>%2F2019%2Fd423f60b.html</url>
     <content type="text"><![CDATA[LSB算法是将信息的每一位隐藏到BMP格式图片RGB单元的最后一位,由于一位的改变对于颜色影响不大，人的肉眼难以识别，从而达到信息隐藏的效果。具体需要了解BMP文件格式，前54个字节为图片信息，不能修改，所以从第55个字节开始进行隐藏。]]></content>
       <categories>
         <category>C语言</category>
@@ -26,7 +34,7 @@
   </entry>
   <entry>
     <title><![CDATA[查找数组中的指定元素]]></title>
-    <url>%2F2019%2F05%2F16%2F%E6%9F%A5%E6%89%BE%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%2F</url>
+    <url>%2F2019%2Fb4110e56.html</url>
     <content type="text"><![CDATA[在已经排好序的数组中查找指定的数字12345678910111213141516171819int findBin(int a[],int n ,int key)&#123; int low = 0; int high = n - 1; int mid ; while (low &lt;= high) &#123; mid = (low + high) / 2; if (key == a[mid]) &#123; return mid; &#125; if (key &lt; a[mid]) high = mid; if (key &gt; a[mid]) low = mid; &#125; return -1;&#125;]]></content>
       <categories>
         <category>C语言</category>
@@ -34,7 +42,7 @@
   </entry>
   <entry>
     <title><![CDATA[数组排序or对数组插入指定数据]]></title>
-    <url>%2F2019%2F05%2F16%2F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8For%E5%AF%B9%E6%95%B0%E7%BB%84%E6%8F%92%E5%85%A5%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%2F</url>
+    <url>%2F2019%2F6a20cc18.html</url>
     <content type="text"><![CDATA[单个数字按大小插入到已排好序的数组里和插入排序法的关系 单个数字按大小插入到已排好序的数组12345678910111213141516171819#include &lt;stdio.h&gt;void insertArray(int a[],int N,int num) //N是数组下标,num是要插入的数字&#123; int n = N + 1; int i; for (i = n - 1; i &gt;= 0; i--) &#123; if (num &lt; a[i]) &#123; a[i + 1] = a[i]; &#125; else &#123; a[i + 1] = num; a[i] = num; break; &#125; &#125;&#125; 插入排序法123456void sequnceArray(int a[],int n) //n是数组的下标&#123; int i; for (i = 1; i &lt; n; i++) insertArray(a, i, a[i]);&#125;]]></content>
       <categories>
         <category>C语言</category>
